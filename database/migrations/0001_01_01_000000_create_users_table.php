@@ -11,12 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('usuario', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nome');
             $table->string('email')->unique();
+            $table->string('telefone');
+            $table->timestamp('data_nascimento');
+            $table->string('cpf')->unique();
+            $table->decimal('saldo', 10, 2)->nullable()->default(0);
+            $table->string('foto')->nullable();
+            $table->string('cep');
+            $table->integer('numero');
+            $table->string('logradouro');
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->string('estado');
+            $table->integer('complemento')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('senha');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -29,11 +41,45 @@ return new class extends Migration
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+            $table->foreignId('usuario_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+            $table->string('role')->default('usuario');
+        });
+
+        Schema::create('admin', function (Blueprint $table){
+            $table->id();
+            $table->string('nome');
+            $table->string('email')->unique();
+            $table->string('telefone');
+            $table->timestamp('data_nascimento');
+            $table->string('cpf')->unique();
+            $table->string('foto')->nullable();
+            $table->string('cep');
+            $table->integer('numero');
+            $table->string('logradouro');
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->string('estado');
+            $table->integer('complemento')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('senha');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('produto',function (Blueprint $table) {
+            $table->id();
+            $table->string('foto');
+            $table->string('nome');
+            $table->decimal('preco', 10, 2);
+            $table->text('descricao');
+            $table->integer('quantidade');
+            $table->string('categoria');
+            $table->foreignId('usuario_id')->index();
+            $table->timestamps();
         });
     }
 
@@ -45,5 +91,7 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('admin');
+        Schema::dropIfExists('produto');
     }
 };
