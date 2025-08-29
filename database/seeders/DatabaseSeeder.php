@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
+        $this->call([
+            UsuarioSeeder::class,
+            AdminSeeder::class,
+            ProdutoSeeder::class,
+        ]);
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProdutoFactory extends Factory
 {
+
     /**
      * Define the model's default state.
      *
@@ -17,6 +18,7 @@ class ProdutoFactory extends Factory
     public function definition(): array
     {
         return [
+            'foto' => fake()->imageUrl(),
             'nome' => fake()->word(),
             'descricao' => fake()->sentence(),
             'preco' => fake()->randomFloat(2, 1, 100),

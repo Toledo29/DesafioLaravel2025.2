@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use App\Models\Usuario;
+
 class UsuarioSeeder extends Seeder
 {
     /**
@@ -19,7 +21,7 @@ class UsuarioSeeder extends Seeder
             'data_nascimento' => '2000-01-01',
             'cpf' => '123.456.789-00',
             'senha' => 'password',
-            
+
         ]);
 
         Usuario::factory(18)->create();

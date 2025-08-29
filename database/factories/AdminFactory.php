@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
  */
 class AdminFactory extends Factory
 {
+    protected static ?string $senha;
+
     /**
      * Define the model's default state.
      *
@@ -31,7 +33,7 @@ class AdminFactory extends Factory
             'bairro' => fake()->word(),
             'cidade' => fake()->city(),
             'estado' => fake()->state(),
-            'complemento' => fake()->optional()->word(),
+            'complemento' => fake()->optional()->randomNumber(),
             'email_verified_at' => now(),
             'senha' => static::$senha ??= Hash::make('senha'),
             'remember_token' => Str::random(10),

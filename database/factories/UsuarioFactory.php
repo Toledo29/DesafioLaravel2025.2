@@ -14,7 +14,7 @@ class UsuarioFactory extends Factory
     /**
      * The current password being used by the factory.
      */
-    protected static ?string $password;
+    protected static ?string $senha;
 
     /**
      * Define the model's default state.
@@ -36,7 +36,7 @@ class UsuarioFactory extends Factory
             'bairro' => fake()->word(),
             'cidade' => fake()->city(),
             'estado' => fake()->state(),
-            'complemento' => fake()->optional()->word(),
+            'complemento' => fake()->optional()->randomNumber(),
             'email_verified_at' => now(),
             'senha' => static::$senha ??= Hash::make('senha'),
             'remember_token' => Str::random(10),
