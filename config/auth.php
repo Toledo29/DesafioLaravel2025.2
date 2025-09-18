@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+        'guard' => env('AUTH_GUARD', 'web_usuario'),
+        'passwords' => env('AUTH_PASSWORD_BROKER', 'usuarios'),
     ],
 
     /*
@@ -36,7 +36,19 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'web_usuario' => [
+            'driver' => 'session',
+            'provider' => 'usuarios',
+        ],
+        'web_admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+        'usuario' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
@@ -60,9 +72,13 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'usuarios' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => env('AUTH_USER_MODEL', App\Models\Usuario::class),
+        ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_ADMIN_MODEL', App\Models\Admin::class),
         ],
 
         // 'users' => [

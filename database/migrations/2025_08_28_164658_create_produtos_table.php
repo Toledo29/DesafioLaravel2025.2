@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('descricao');
             $table->integer('quantidade');
             $table->string('categoria');
-            $table->foreignId('usuario_id')->index();
+            $table->foreignId('usuario_id')->index()->constrained('usuarios')->onDelete('cascade');
             $table->timestamps();
         });
     }

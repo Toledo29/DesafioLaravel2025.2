@@ -19,7 +19,7 @@ class LoginController extends Controller
     public function login(MakeLoginRequest $request){
 
         if($request->tryToLogin()) {
-             return dd('Usuário autenticado com sucesso!');
+             return redirect()->route('dashboard1');
         }
 
         return back()->withErrors([

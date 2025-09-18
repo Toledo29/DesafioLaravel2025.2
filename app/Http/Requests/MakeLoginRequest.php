@@ -41,14 +41,14 @@ class MakeLoginRequest extends FormRequest
         $usuario = Usuario::where('email', $this->input('email'))->first();
 
         if ($usuario && Hash::check($this->input('password'), $usuario->senha)) {
-            Auth::login($usuario);
+            Auth::guard('web_usuario')->login($usuario);
             return true;
         }
 
         $usuarioadmin = Admin::where('email', $this->input('email'))->first();
 
         if ($usuarioadmin && Hash::check($this->input('password'), $usuarioadmin->senha)) {
-            Auth::login($usuarioadmin);
+            Auth::guard('web_admin')->login($usuarioadmin);
             return true;
         }
 

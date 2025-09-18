@@ -24,6 +24,8 @@ class ProdutoSeeder extends Seeder
             'usuario_id' => 1,
         ]);
 
-        Produto::factory(36)->create();
+        Usuario::all()->each(function (Usuario $user) {
+            Produto::factory(2)->create(['usuario_id' => $user->id]);
+        });
     }
 }
