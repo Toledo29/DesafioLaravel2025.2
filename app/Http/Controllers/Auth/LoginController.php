@@ -26,4 +26,5 @@ class LoginController extends Controller
             'email' => 'As credenciais fornecidas estão incorretas.',
         ]);
     }
+    
 }
