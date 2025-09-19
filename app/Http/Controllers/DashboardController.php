@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         if (auth()->guard('web_usuario')->check()) {
             $user = auth()->guard('web_usuario')->user();
-            $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->get();
+            $produtos = Produto::where('usuario_id', '!=', $user->id)->where('nome', 'like', '%'.$request->input('pesquisa').'%')->get();
             
             return view('dashboard1', compact('produtos'));
         }
