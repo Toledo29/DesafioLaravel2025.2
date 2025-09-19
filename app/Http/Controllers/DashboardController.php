@@ -13,13 +13,23 @@ class DashboardController extends Controller
     {
         if (auth()->guard('web_usuario')->check()) {
             $user = auth()->guard('web_usuario')->user();
-            $produtos = Produto::where('usuario_id', '!=', $user->id)->where('nome', 'like', '%'.$request->input('pesquisa').'%')->get();
-            
+            if($request->input('categoria') == ''){
+                $produtos = Produto::where('usuario_id', '!=', $user->id)->where('nome', 'like', '%'.$request->input('pesquisa').'%')->get();
+            }
+            else{
+                $produtos = Produto::where('usuario_id', '!=', $user->id)->where('nome', 'like', '%'.$request->input('pesquisa').'%')->where('categoria', $request->input('categoria'))->get();
+            }
+
             return view('dashboard1', compact('produtos'));
         }
         elseif (auth()->guard('web_admin')->check()) {
             $admin = auth()->guard('web_admin')->user();
-            $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->get();
+            if($request->input('categoria') == ''){
+                $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->get();
+            }
+            else{
+                $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->where('categoria', $request->input('categoria'))->get();
+            }
             return view('dashboard1', compact('produtos'));
         }
         return view('dashboard1');

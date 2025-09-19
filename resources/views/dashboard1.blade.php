@@ -10,6 +10,14 @@
             <div>
                 <button type="submit">Buscar</button>
             </div>
+            <div>
+                <select name="categoria">
+                    <option value="">Todas Categorias</option>
+                    <option value="eletronicos" {{ request('categoria') == 'eletronicos' ? 'selected' : '' }}>Eletrônicos</option>
+                    <option value="roupas" {{ request('categoria') == 'roupas' ? 'selected' : '' }}>Roupas</option>
+                    <option value="moveis" {{ request('categoria') == 'moveis' ? 'selected' : '' }}>Móveis</option>
+                </select>
+            </div>
         </form>
     </div>
 
