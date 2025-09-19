@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('preco', 10, 2);
             $table->text('descricao');
             $table->integer('quantidade');
-            $table->string('categoria');
+            $table->enum('categoria', ['eletronicos', 'roupas', 'moveis']);
             $table->foreignId('usuario_id')->index()->constrained('usuarios')->onDelete('cascade');
             $table->timestamps();
         });

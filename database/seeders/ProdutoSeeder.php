@@ -20,7 +20,7 @@ class ProdutoSeeder extends Seeder
             'descricao' => 'This is a test product.',
             'preco' => 9.99,
             'quantidade' => 100,
-            'categoria' => 'Test Category',
+            'categoria' => 'eletronicos',
             'usuario_id' => 1,
         ]);
 

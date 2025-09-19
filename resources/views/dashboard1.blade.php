@@ -15,7 +15,11 @@
 
     <ul>
         @foreach ($produtos as $produto)
-            <li>{{ $produto->nome }} -${{ $produto->preco }} - <button>Comprar</button> </li>
+            <li>{{ $produto->nome }} -${{ $produto->preco }}
+                @if(auth('web_usuario')->check())
+                 - <button>Comprar</button>
+                @endif
+            </li>
         @endforeach 
     </ul>
 </div>

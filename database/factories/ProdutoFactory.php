@@ -23,7 +23,7 @@ class ProdutoFactory extends Factory
             'descricao' => fake()->sentence(),
             'preco' => fake()->randomFloat(2, 1, 100),
             'quantidade' => fake()->numberBetween(1, 100),
-            'categoria' => fake()->word(),
+            'categoria' => fake()->randomElement(['eletronicos', 'roupas', 'moveis']),
             'usuario_id' => fake()->randomNumber(),
         ];
     }
