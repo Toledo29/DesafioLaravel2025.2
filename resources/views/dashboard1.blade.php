@@ -24,6 +24,7 @@
     <ul>
         @foreach ($produtos as $produto)
             <li>{{ $produto->nome }} -${{ $produto->preco }}
+                <a href="/produtos/{{ $produto->id }}">Visualizar</a>
                 @if(auth('web_usuario')->check())
                  - <button>Comprar</button>
                 @endif

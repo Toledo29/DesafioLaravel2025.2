@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProdutoRequest;
 
 class ProdutoController extends Controller
 {
-
     /**
      * Show the form for creating a new resource.
      */
@@ -21,8 +22,11 @@ class ProdutoController extends Controller
      */
     public function store(StoreProdutoRequest $request)
     {
-        Produto::create($request->validated() + ['usuario_id' => auth()->id()]);
-        return redirect()->route('dashboard1');
+        /** @var \App\Models\Usuario $user */
+        $user = auth()->guard('web_usuario')->user();
+
+        $user->produtos()->create($request->validated());
+        return redirect()->route('produtos');
     }
 
     /**
@@ -30,7 +34,7 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
-        //
+        return view('produtos.show', compact('produto'));
     }
 
     /**
@@ -38,7 +42,7 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+        $this->authorize('update', $produto);
     }
 
     /**
@@ -46,7 +50,9 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $this->authorize('update', $produto);
+
+        
     }
 
     /**
