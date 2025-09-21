@@ -8,6 +8,10 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\produtosAdm;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StoreProdutoRequest;
+use App\Http\Controllers\vendasAdm;
+use App\Http\Controllers\vendasPdf;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,7 +36,10 @@ Route::middleware('auth:web_usuario,web_admin', 'verified')->group(function () {
     Route::get('produtos/{produto}/edit', [ProdutoController::class, 'edit'])->name('produtos.edit');
     Route::put('produtos/{produto}/edit', [ProdutoController::class, 'update'])->name('produtos.update');
 
-    
+    Route::get('/vendas/vendasAdm', [vendasAdm::class, '__invoke'])->name('vendas.vendasAdm');
+
+    Route::get('/vendas/pdf', [vendasPdf::class, '__invoke'])->name('vendas.vendasPdf');
+
 
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 

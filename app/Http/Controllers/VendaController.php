@@ -28,7 +28,7 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -36,7 +36,8 @@ class VendaController extends Controller
      */
     public function show(Venda $venda)
     {
-        //
+        
+        return view('vendas.show', compact('venda'));
     }
 
     /**
