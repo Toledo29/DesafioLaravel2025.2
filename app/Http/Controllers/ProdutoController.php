@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use App\Models\Usuario;
+use App\Http\Requests\UpdateProdutoRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProdutoRequest;
 
@@ -42,16 +43,17 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        $this->authorize('update', $produto);
+        $this->authorize('edit', $produto);
+        return view('produtos.edit', compact('produto'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Produto $produto)
+    public function update(UpdateProdutoRequest $request, Produto $produto)
     {
-        $this->authorize('update', $produto);
-
+        $produto->fill($request->validated())->save();
+        return redirect()->route('produtos.show', $produto);
         
     }
 
@@ -60,6 +62,7 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+        return redirect()->route('produtos.produtosAdm')->with('success', 'Produto deletado com sucesso!');
     }
 }

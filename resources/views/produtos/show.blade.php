@@ -11,7 +11,7 @@
     @endif
         <p>Vendido por: {{ $produto->usuario->nome }}</p>
         <p>Telefone: {{ $produto->usuario->telefone }}</p>
-    @if(auth('web_usuario')->check())
+    @if(auth('web_usuario')->check() and $produto->quantidade > 0 and auth('web_usuario')->id() != $produto->usuario_id)
         <button>Comprar</button>
     @endif
     <br>    

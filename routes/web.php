@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\produtosAdm;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StoreProdutoRequest;
 
@@ -23,8 +24,15 @@ Route::middleware('auth:web_usuario,web_admin', 'verified')->group(function () {
 
     Route::get('/produtos/{produto}/show', [ProdutoController::class, 'show'])->name('produtos.show');
 
+    Route::get('/produtos/produtosAdm', [produtosAdm::class, '__invoke'])->name('produtos.produtosAdm');
+    Route::delete('produtos/{produto}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+
     Route::get('/logout' , [LogoutController::class, '__invoke'])->name('logout');
 
+    Route::get('produtos/{produto}/edit', [ProdutoController::class, 'edit'])->name('produtos.edit');
+    Route::put('produtos/{produto}/edit', [ProdutoController::class, 'update'])->name('produtos.update');
+
+    
 
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
