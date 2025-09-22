@@ -10,7 +10,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StoreProdutoRequest;
 use App\Http\Controllers\vendasAdm;
 use App\Http\Controllers\vendasPdf;
-
+use App\Http\Controllers\CepController;
+use App\Http\Controllers\usuariosAdm;
+use App\Http\Controllers\UsuarioController;
 
 
 Route::get('/', function () {
@@ -40,6 +42,8 @@ Route::middleware('auth:web_usuario,web_admin', 'verified')->group(function () {
 
     Route::get('/vendas/pdf', [vendasPdf::class, '__invoke'])->name('vendas.vendasPdf');
 
+    Route::get('/buscar-cep', [CepController::class, 'buscarCep'])->name('cep.buscar');
+
 
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
@@ -51,6 +55,12 @@ Route::middleware('auth:web_usuario,web_admin', 'verified')->group(function () {
 Route::middleware('auth:web_usuario', 'verified')->group(function () {
     Route::get('/produtos/create', [ProdutoController::class, 'create'])->name('produtos.create');
     Route::post('/produtos/create', [ProdutoController::class, 'store']);
+});
+
+Route::middleware('auth:web_admin', 'verified')->group(function () {
+    Route::get('/usuarios/usuariosAdm', [usuariosAdm::class, '__invoke'])->name('usuarios.usuariosAdm');
+    Route::get('usuarios/create', [UsuarioController::class, 'create'])->name('usuarios.create');
+    Route::post('usuarios/create', [UsuarioController::class, 'store'])->name('usuarios.store');
 });
 
 require __DIR__.'/auth.php';
