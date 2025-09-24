@@ -21,6 +21,18 @@ class Admin extends Authenticatable
         'nome',
         'email',
         'senha',
+        'telefone',
+        'data_nascimento',
+        'cpf',
+        'foto',
+        'cep',
+        'numero',
+        'logradouro',
+        'bairro',
+        'cidade',
+        'estado',
+        'complemento',
+        'criador_id',
     ];
 
     /**
@@ -43,6 +55,9 @@ class Admin extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'senha' => 'hashed',
+            'data_nascimento' => 'date',
+            'numero' => 'integer',
+            'complemento' => 'integer',
         ];
     }
 }

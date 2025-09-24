@@ -21,7 +21,18 @@ class Usuario extends Authenticatable
         'nome',
         'email',
         'senha',
-        
+        'telefone',
+        'data_nascimento',
+        'cpf',
+        'saldo',
+        'foto',
+        'cep',
+        'numero',
+        'logradouro',
+        'bairro',
+        'cidade',
+        'estado',
+        'complemento',
     ];
 
     /**
@@ -44,6 +55,9 @@ class Usuario extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'senha' => 'hashed',
+            'saldo' => 'float',
+            'data_nascimento' => 'date',
+            'numero' => 'integer',
         ];
     }
 

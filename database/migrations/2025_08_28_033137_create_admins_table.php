@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('estado');
             $table->integer('complemento')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->foreignId('criador_id')->nullable()->index()->constrained('admins')->onDelete('cascade');
             $table->string('senha');
             $table->rememberToken();
             $table->timestamps();

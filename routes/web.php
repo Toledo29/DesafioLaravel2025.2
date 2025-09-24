@@ -44,6 +44,10 @@ Route::middleware('auth:web_usuario,web_admin', 'verified')->group(function () {
 
     Route::get('/buscar-cep', [CepController::class, 'buscarCep'])->name('cep.buscar');
 
+    Route::get('/usuarios/{usuario}/show', [UsuarioController::class, 'show'])->name('usuarios.show');
+    Route::get('/usuarios/{usuario}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+    Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
+    Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
 
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
