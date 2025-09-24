@@ -65,6 +65,14 @@ Route::middleware('auth:web_admin', 'verified')->group(function () {
     Route::get('/usuarios/usuariosAdm', [usuariosAdm::class, '__invoke'])->name('usuarios.usuariosAdm');
     Route::get('usuarios/create', [UsuarioController::class, 'create'])->name('usuarios.create');
     Route::post('usuarios/create', [UsuarioController::class, 'store'])->name('usuarios.store');
+
+    Route::get('/admins/adminAdm', [App\Http\Controllers\adminAdm::class, '__invoke'])->name('admins.adminAdm');
+    Route::get('/admins/{admin}/show', [App\Http\Controllers\AdminController::class, 'show'])->name('admins.show');
+    Route::get('admins/create', [App\Http\Controllers\AdminController::class, 'create'])->name('admins.create');
+    Route::post('admins/create', [App\Http\Controllers\AdminController::class, 'store'])->name('admins.store');
+    Route::get('/admins/{admin}/edit', [App\Http\Controllers\AdminController::class, 'edit'])->name('admins.edit');
+    Route::put('/admins/{admin}', [App\Http\Controllers\AdminController::class, 'update'])->name('admins.update');
+    Route::delete('/admins/{admin}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admins.destroy');
 });
 
 require __DIR__.'/auth.php';

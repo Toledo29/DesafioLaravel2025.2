@@ -60,4 +60,9 @@ class Admin extends Authenticatable
             'complemento' => 'integer',
         ];
     }
+
+    public function criador()
+    {
+        return $this->belongsTo(Admin::class, 'criador_id');
+    }
 }
