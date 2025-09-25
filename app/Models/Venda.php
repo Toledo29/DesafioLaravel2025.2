@@ -15,6 +15,7 @@ class Venda extends Model
         'vendedor_id',
         'preco',
         'data_venda',
+        'status',
     ];
     public function produto()
     {

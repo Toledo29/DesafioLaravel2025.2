@@ -26,7 +26,11 @@
             <li>{{ $produto->nome }} -${{ $produto->preco }}
                 <a href="/produtos/{{ $produto->id }}/show">Visualizar</a>
                 @if(auth('web_usuario')->check())
-                 - <button>Comprar</button>
+                <form action="/checkout" method="POST" style="display:inline;">
+                    @csrf
+                    <input type="hidden" name="produtos" value="{{json_encode($produto)}}">
+                    <button type="submit">Comprar</button>
+                </form>
                 @endif
             </li>
         @endforeach 

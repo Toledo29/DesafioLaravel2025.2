@@ -13,10 +13,11 @@ use App\Http\Controllers\vendasPdf;
 use App\Http\Controllers\CepController;
 use App\Http\Controllers\usuariosAdm;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PagSeguroController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard1');
 });
 
 Route::middleware('guest:web_usuario,web_admin')->group(function(){
@@ -59,6 +60,7 @@ Route::middleware('auth:web_usuario,web_admin', 'verified')->group(function () {
 Route::middleware('auth:web_usuario', 'verified')->group(function () {
     Route::get('/produtos/create', [ProdutoController::class, 'create'])->name('produtos.create');
     Route::post('/produtos/create', [ProdutoController::class, 'store']);
+    Route::post('/checkout', [PagSeguroController::class, 'checkout'])->name('checkout');
 });
 
 Route::middleware('auth:web_admin', 'verified')->group(function () {

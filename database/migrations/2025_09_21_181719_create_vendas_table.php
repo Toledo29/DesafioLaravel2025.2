@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('vendedor_id')->constrained('usuarios')->onDelete('cascade');
             $table->decimal('preco', 10, 2);
             $table->date('data_venda')->default(DB::raw('CURRENT_DATE'));
+            $table->integer('status')->default(1); // 1: Pendente, 2: Aprovado, 3: Cancelado
             $table->timestamps();
         });
     }
