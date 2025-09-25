@@ -10,6 +10,7 @@ class Venda extends Model
     use HasFactory;
 
     protected $fillable = [
+        'reference_id',
         'produto_id',
         'comprador_id',
         'vendedor_id',

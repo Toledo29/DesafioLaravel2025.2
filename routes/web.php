@@ -61,6 +61,8 @@ Route::middleware('auth:web_usuario', 'verified')->group(function () {
     Route::get('/produtos/create', [ProdutoController::class, 'create'])->name('produtos.create');
     Route::post('/produtos/create', [ProdutoController::class, 'store']);
     Route::post('/checkout', [PagSeguroController::class, 'checkout'])->name('checkout');
+    Route::get('/compras/comprasAdm', [comprasAdm::class, '__invoke'])->name('compras.comprasAdm');
+    Route::get('/compras/pdf', [comprasPdf::class, '__invoke'])->name('compras.pdf');
 });
 
 Route::middleware('auth:web_admin', 'verified')->group(function () {

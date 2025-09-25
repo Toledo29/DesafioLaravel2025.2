@@ -30,11 +30,13 @@ class VendaSeeder extends Seeder
                 $produto = $produtosComprador->random();
 
                 Venda::factory()->create([
+                    'reference_id' => uniqid(),
                     'comprador_id' => $comprador->id,
                     'vendedor_id' => $vendedor->id,
                     'produto_id' => $produto->id,
                     'preco' => $produto->preco,
                     'data_venda' => now(),
+                    'status' => 2,
                     ]);
                 }
             }

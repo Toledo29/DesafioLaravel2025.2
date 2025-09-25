@@ -28,7 +28,7 @@
                 @if(auth('web_usuario')->check())
                 <form action="/checkout" method="POST" style="display:inline;">
                     @csrf
-                    <input type="hidden" name="produtos" value="{{json_encode($produto)}}">
+                    <input type="hidden" name="produto" value="{{json_encode($produto)}}">
                     <button type="submit">Comprar</button>
                 </form>
                 @endif
