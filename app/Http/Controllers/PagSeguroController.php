@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Venda;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Http;
 
 class PagSeguroController extends Controller
@@ -29,7 +30,7 @@ class PagSeguroController extends Controller
             'reference_id' => uniqid(),
             'items' => [$item],
         ]);
-        dd($produto);
+
         if($response->successful()){
             Venda::create([
                 'reference_id' => $response['reference_id'],

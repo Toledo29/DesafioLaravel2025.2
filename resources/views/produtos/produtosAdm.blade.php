@@ -18,6 +18,12 @@
                     <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</button>
                 </form>
             </li>
-        @endforeach 
+        @endforeach
     </ul>
+
+    @if(auth('web_admin')->check())
+        {!! $chart->renderHtml() !!}
+        {!! $chart->renderChartJsLibrary() !!}
+        {!! $chart->renderJs() !!}
+    @endif
 </div>
