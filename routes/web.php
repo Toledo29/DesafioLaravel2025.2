@@ -77,6 +77,10 @@ Route::middleware('auth:web_admin', 'verified')->group(function () {
     Route::get('/admins/{admin}/edit', [App\Http\Controllers\AdminController::class, 'edit'])->name('admins.edit');
     Route::put('/admins/{admin}', [App\Http\Controllers\AdminController::class, 'update'])->name('admins.update');
     Route::delete('/admins/{admin}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admins.destroy');
+
+    Route::get('/admins/email', [App\Http\Controllers\EmailController::class, 'create'])->name('admins.email');
+    Route::post('/admins/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('admins.sendEmail');
+
 });
 
 require __DIR__.'/auth.php';
