@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
         Admin::factory()->create([
             'nome' => 'Admin User',
             'email' => 'admin@example.com',
-            'senha' => 'adminpassword',
+            'password' => 'adminpassword',
         ]);
 
         Admin::factory(9)->create();

@@ -20,7 +20,7 @@ class Admin extends Authenticatable
     protected $fillable = [
         'nome',
         'email',
-        'senha',
+        'password',
         'telefone',
         'data_nascimento',
         'cpf',
@@ -41,7 +41,7 @@ class Admin extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
-        'senha',
+        'password',
         'remember_token',
     ];
 
@@ -54,7 +54,7 @@ class Admin extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'senha' => 'hashed',
+            'password' => 'hashed',
             'data_nascimento' => 'date',
             'numero' => 'integer',
             'complemento' => 'integer',

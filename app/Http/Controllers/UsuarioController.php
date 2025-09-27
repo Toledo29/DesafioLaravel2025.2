@@ -70,10 +70,10 @@ class UsuarioController extends Controller
             $data['foto'] = $request->file('foto')->store('fotos', 'public');
         }
 
-        if (!empty($data['senha'])) {
-        $data['senha'] = bcrypt($data['senha']);
+        if (!empty($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
         } else {
-        unset($data['senha']);
+            unset($data['password']);
         }
         
         $usuario->update($data);

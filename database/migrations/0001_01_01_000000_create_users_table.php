@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('estado');
             $table->integer('complemento')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('senha');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

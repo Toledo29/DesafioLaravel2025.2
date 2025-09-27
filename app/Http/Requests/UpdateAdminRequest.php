@@ -35,7 +35,7 @@ class UpdateAdminRequest extends FormRequest
             'cidade' => 'required|string|max:255',
             'estado' => 'required|string|max:255',
             'complemento' => 'nullable|string|max:255',
-            'senha' => 'nullable|string|min:8|confirmed',
+            'password' => 'nullable|string|min:8|confirmed',
         ];
     }
 }

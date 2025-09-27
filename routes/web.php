@@ -17,7 +17,7 @@ use App\Http\Controllers\PagSeguroController;
 
 
 Route::get('/', function () {
-    return view('dashboard1');
+    return view('welcome');
 });
 
 Route::middleware('guest:web_usuario,web_admin')->group(function(){

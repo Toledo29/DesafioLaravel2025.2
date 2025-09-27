@@ -20,7 +20,7 @@ class UsuarioSeeder extends Seeder
             'telefone' => '123456789',
             'data_nascimento' => '2000-01-01',
             'cpf' => '123.456.789-00',
-            'senha' => 'password',
+            'password' => 'password',
 
         ]);
 

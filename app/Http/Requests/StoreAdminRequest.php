@@ -35,7 +35,7 @@ class StoreAdminRequest extends FormRequest
             'cidade' => 'required|string|max:255',
             'estado' => 'required|string|max:255',
             'complemento' => 'nullable|string|max:255',
-            'senha' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8|confirmed',
             'criador_id' => 'nullable|exists:admins,id',
         ];
     }
