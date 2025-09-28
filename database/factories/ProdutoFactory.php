@@ -21,6 +21,7 @@ class ProdutoFactory extends Factory
             'foto' => fake()->imageUrl(),
             'nome' => fake()->word(),
             'descricao' => fake()->sentence(),
+            'foto' => fake()->imageUrl(),
             'preco' => fake()->randomFloat(2, 1, 100),
             'quantidade' => fake()->numberBetween(1, 100),
             'categoria' => fake()->randomElement(['eletronicos', 'roupas', 'moveis']),

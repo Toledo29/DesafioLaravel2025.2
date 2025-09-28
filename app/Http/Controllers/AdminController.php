@@ -29,7 +29,13 @@ class AdminController extends Controller
      */
     public function store(StoreAdminRequest $request)
     {
-        Admin::create($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('foto')) {
+            $data['foto'] = $request->file('foto')->store('admins.fotos', 'public');
+        }
+
+        Admin::create($data);
         return redirect()->route('admins.adminAdm');
     }
 
@@ -54,7 +60,13 @@ class AdminController extends Controller
      */
     public function update(UpdateAdminRequest $request, Admin $admin)
     {
-        $admin->update($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('foto')) {
+            $data['foto'] = $request->file('foto')->store('admins.fotos', 'public');
+        }
+
+        $admin->update($data);
         return redirect()->route('admins.adminAdm');
     }
 

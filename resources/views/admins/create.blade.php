@@ -6,7 +6,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    <form action="{{ route('admins.store') }}" method="POST">
+    <form action="{{ route('admins.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
@@ -14,11 +14,11 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
 
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required>
 
-        <label for="senha_confirmation">Confirme a Senha:</label>
-        <input type="password" id="senha_confirmation" name="senha_confirmation" required>
+        <label for="password_confirmation">Confirme a Senha:</label>
+        <input type="password" id="password_confirmation" name="password_confirmation" required>
 
         <label for="data_nascimento">Data de Nascimento:</label>
         <input type="date" id="data_nascimento" name="data_nascimento"  required>

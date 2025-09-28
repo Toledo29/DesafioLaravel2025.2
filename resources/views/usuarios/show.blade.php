@@ -16,7 +16,8 @@
 
         <label for="saldo">Saldo: {{ $usuario->saldo }}</label>
 
-        <label for="foto">Foto: {{ $usuario->foto }}</label>
+        <label for="foto">Foto:</label>
+        <img src="{{ asset('storage/' . $usuario->foto) }}" alt="">
 
         <label for="telefone">Telefone: {{ $usuario->telefone }}</label>
 

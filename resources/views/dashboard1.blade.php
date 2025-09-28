@@ -2,7 +2,7 @@
     <h1>Dashboard 1</h1>
     <p>Welcome to Dashboard 1!</p>
     <p>User ID: {{ auth()->id() }}</p>
-    <div >
+    <div>
         <form action="{{ route('dashboard1') }}" method="GET">
             <div>
                 <input type="text" name="pesquisa" placeholder="Pesquisar produtos..." value="{{ request('pesquisa') }}"/>
@@ -21,18 +21,31 @@
         </form>
     </div>
 
-    <ul>
-        @foreach ($produtos as $produto)
-            <li>{{ $produto->nome }} -${{ $produto->preco }}
-                <a href="/produtos/{{ $produto->id }}/show">Visualizar</a>
-                @if(auth('web_usuario')->check())
-                <form action="/checkout" method="POST" style="display:inline;">
-                    @csrf
-                    <input type="hidden" name="produto" value="{{json_encode($produto)}}">
-                    <button type="submit">Comprar</button>
-                </form>
-                @endif
-            </li>
-        @endforeach 
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($produtos as $produto)
+                <tr>
+                    <td>{{ $produto->nome }}</td>
+                    <td>{{ $produto->preco }}</td>
+                    <td>
+                        <a href="/produtos/{{ $produto->id }}/show">Visualizar</a>
+                        @if(auth('web_usuario')->check())
+                        <form action="/checkout" method="POST" style="display:inline;">
+                            @csrf
+                            <input type="hidden" name="produto" value="{{json_encode($produto)}}">
+                            <button type="submit">Comprar</button>
+                        </form>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach 
+        </tbody>
+    </table>
 </div>

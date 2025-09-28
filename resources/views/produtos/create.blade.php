@@ -8,7 +8,7 @@
         </div>
     @endif
 
-    <form action="{{ route('produtos.create') }}" method="POST">
+    <form action="{{ route('produtos.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
@@ -27,9 +27,8 @@
         <label for="quantidade">Quantidade:</label>
         <input type="number" id="quantidade" name="quantidade" required>
 
-        <label for="imagem">Imagem:</label>
-        <input type="file" id="imagem" name="imagem" accept="image/*">
-        <button type="button">Upload</button>
+        <label for="foto">Foto:</label>
+        <input type="file" id="foto" name="foto" accept="image/*">
 
         <label for="descricao">Descrição:</label>
         <textarea id="descricao" name="descricao" required></textarea>

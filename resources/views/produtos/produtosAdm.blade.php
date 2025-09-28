@@ -4,22 +4,39 @@
     @if(auth('web_usuario')->check())
         <a href="{{ route('produtos.create') }}">Criar</a>
     @endif
-    <ul>
-        @foreach ($produtos as $produto)
-            <li>{{ $produto->nome }} -${{ $produto->preco }}
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
                 @if(auth('web_admin')->check())
-                 - {{ $produto->usuario->nome }}
+                    <th>Usuário</th>
                 @endif
-                <a href="{{ route('produtos.show', $produto) }}">Visualizar</a>
-                <a href="{{ route('produtos.edit', $produto)}}">Editar</a>
-                <form action="{{ route('produtos.destroy', $produto) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</button>
-                </form>
-            </li>
-        @endforeach
-    </ul>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($produtos as $produto)
+                <tr>
+                    <td>{{ $produto->nome }}</td>
+                    <td>{{ $produto->preco }}</td>
+                    @if(auth('web_admin')->check())
+                        <td>{{ $produto->usuario->nome }}</td>
+                    @endif
+                    <td>
+                        <a href="{{ route('produtos.show', $produto) }}">Visualizar</a>
+                        <a href="{{ route('produtos.edit', $produto)}}">Editar</a>
+                        <form action="{{ route('produtos.destroy', $produto) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
     @if(auth('web_admin')->check())
         {!! $chart->renderHtml() !!}

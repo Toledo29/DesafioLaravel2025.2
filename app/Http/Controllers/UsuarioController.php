@@ -33,7 +33,7 @@ class UsuarioController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('fotos', 'public');
+            $data['foto'] = $request->file('foto')->store('usuario.fotos' , 'public');
         }
 
         $user = new Usuario($data);
@@ -67,7 +67,7 @@ class UsuarioController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('fotos', 'public');
+            $data['foto'] = $request->file('foto')->store('usuario.fotos' , 'public');
         }
 
         if (!empty($data['password'])) {

@@ -22,6 +22,7 @@ class Produto extends Model
         'nome',
         'descricao',
         'preco',
+        'foto',
         'quantidade',
         'categoria',
         'usuario_id',

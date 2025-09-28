@@ -14,7 +14,8 @@
 
         <label for="cpf">CPF: {{ $admin->cpf }}</label>
 
-        <label for="foto">Foto: {{ $admin->foto }}</label>
+        <label for="foto">Foto:</label>
+        <img src="{{ asset('storage/' . $admin->foto) }}" alt="">
 
         <label for="telefone">Telefone: {{ $admin->telefone }}</label>
 

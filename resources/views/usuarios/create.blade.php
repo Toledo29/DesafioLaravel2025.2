@@ -6,7 +6,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    <form action="{{ route('usuarios.store') }}" method="POST">
+    <form action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>

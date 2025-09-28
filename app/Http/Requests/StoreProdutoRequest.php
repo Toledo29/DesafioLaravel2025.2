@@ -28,6 +28,7 @@ class StoreProdutoRequest extends FormRequest
             'descricao' => 'required|string',
             'quantidade' => 'required|integer|min:0',
             'categoria' => 'required|string|max:255',
+            'usuario_id' => 'required|exists:users,id',
         ];
     }
 }

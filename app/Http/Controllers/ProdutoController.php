@@ -26,7 +26,10 @@ class ProdutoController extends Controller
         /** @var \App\Models\Usuario $user */
         $user = auth()->guard('web_usuario')->user();
 
-        $user->produtos()->create($request->validated());
+        $data = $request->validated();
+        $data['foto'] = $request->file('foto')->store('produtos.fotos' , 'public');
+
+        $user->produtos()->create($data);
         return redirect()->route('produtos');
     }
 
@@ -52,7 +55,13 @@ class ProdutoController extends Controller
      */
     public function update(UpdateProdutoRequest $request, Produto $produto)
     {
-        $produto->fill($request->validated())->save();
+        $data = $request->validated();
+        
+        if ($request->hasFile('foto')) {
+            $data['foto'] = $request->file('foto')->store('produtos.fotos' , 'public');
+        }
+
+        $produto->fill($data);
         return redirect()->route('produtos.show', $produto);
         
     }
