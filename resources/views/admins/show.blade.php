@@ -6,6 +6,15 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+
+    <br>
+    <div>
+        <a href="{{ route('admins.adminAdm') }}">Voltar</a>
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
+    
+    <div>
         <label for="nome">Nome: {{ $admin->nome }}</label>
 
         <label for="email">Email: {{ $admin->email }}</label>
@@ -40,4 +49,5 @@
             @method('DELETE')
             <button type="submit">Deletar Admin</button>
         </form>
+    </div>
 </div>

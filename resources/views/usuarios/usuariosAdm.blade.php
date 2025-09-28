@@ -1,6 +1,13 @@
 <div>
     <h1>Usuários</h1>
 
+    <br>
+    <div>
+        <a href="{{ route('dashboard1') }}">Voltar</a>
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
+
     <a href="{{ route('usuarios.create') }}">Criar</a>
 
     <table>

@@ -1,4 +1,10 @@
 <div>
+    <br>
+    <div>
+        <a href="{{ route('produtos.produtosAdm') }}">Voltar</a>
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
     <h1>Produto {{ $produto->nome }}</h1>
     <p>Preço: ${{ $produto->preco }}</p>
     <p>Descrição: {{ $produto->descricao }}</p>

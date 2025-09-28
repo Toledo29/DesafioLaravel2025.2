@@ -7,6 +7,13 @@
         </div>
     @endif
 
+    <br>
+    <div>
+        <a href="{{ route('produtos.produtosAdm') }}">Voltar</a>
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
+
     <form action="{{ route('produtos.update', $produto->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 

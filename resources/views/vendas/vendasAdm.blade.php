@@ -1,5 +1,11 @@
 <div>
     <h1>Vendas</h1>
+    <br>
+    <div>
+        <a href="{{ route('dashboard1') }}">Voltar</a>
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
     <button onclick="window.location='{{ route('vendas.vendasPdf') }}'">Gerar PDF</button>
     <ul>
         @foreach ($vendas as $venda)

@@ -1,6 +1,11 @@
 <div>
     <h1>Produtos</h1>
-    
+    <br>
+    <div>
+        <a href="{{ route('dashboard1') }}">Voltar</a>
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
     @if(auth('web_usuario')->check())
         <a href="{{ route('produtos.create') }}">Criar</a>
     @endif

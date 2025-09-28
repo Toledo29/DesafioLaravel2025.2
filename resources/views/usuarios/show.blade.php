@@ -6,6 +6,18 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+    <br>
+    <div>
+        @if(auth('web_usuario')->check())
+        <a href="{{ route('dashboard1') }}">Voltar</a>
+        @endif
+        @if(auth('web_usuario')->check())
+        <a href="{{ route('usuarios.usuariosAdm') }}">Voltar</a>
+        @endif
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
+    <div>
         <label for="nome">Nome: {{ $usuario->nome }}</label>
 
         <label for="email">Email: {{ $usuario->email }}</label>
@@ -40,4 +52,5 @@
             @method('DELETE')
             <button type="submit">Deletar Usuário</button>
         </form>
+    </div>
 </div>

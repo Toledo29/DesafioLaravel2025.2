@@ -6,6 +6,12 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+    <br>
+    <div>
+        <a href="{{ route('usuarios.usuariosAdm') }}">Voltar</a>
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
     <form action="{{ route('usuarios.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="nome">Nome:</label>

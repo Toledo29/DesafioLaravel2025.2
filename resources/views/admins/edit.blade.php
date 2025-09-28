@@ -15,6 +15,14 @@
         </ul>
     </div>
     @endif
+
+    <br>
+    <div>
+        <a href="{{ route('admins.adminAdm') }}">Voltar</a>
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
+
     <form action="{{ route('admins.update', $admin->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 

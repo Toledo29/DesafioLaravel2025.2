@@ -62,7 +62,7 @@ class ProdutoController extends Controller
         }
 
         $produto->fill($data)->save();
-        return redirect()->route('produtos.show', $produto);
+        return redirect()->route('produtos.produtosAdm', $produto);
         
     }
 

@@ -1,6 +1,11 @@
 <div>
     <h1>Admins</h1>
-
+    <br>
+    <div>
+        <a href="{{ route('dashboard1') }}">Voltar</a>
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
     <a href="{{ route('admins.create') }}">Criar</a>
 
     <table>

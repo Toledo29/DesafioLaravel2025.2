@@ -15,6 +15,17 @@
         </ul>
     </div>
     @endif
+    <br>
+    <div>
+        @if(auth('web_usuario')->check())
+        <a href="{{ route('dashboard1') }}">Voltar</a>
+        @endif
+        @if(auth('web_usuario')->check())
+        <a href="{{ route('usuarios.usuariosAdm') }}">Voltar</a>
+        @endif
+        <a href="{{ route('logout') }}">Logout</a>
+    </div>
+    <br>
     <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
