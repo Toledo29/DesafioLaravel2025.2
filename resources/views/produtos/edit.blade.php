@@ -30,11 +30,13 @@
         <input type="number" id="quantidade" name="quantidade" value="{{ $produto->quantidade }}" required>
 
         <label for="imagem">Imagem:</label>
+        <img src="{{ asset('storage/' . $produto->foto) }}" alt="">
         <input type="file" id="imagem" name="imagem" accept="image/*">
-        <button type="button">Upload</button>
 
         <label for="descricao">Descrição:</label>
         <textarea id="descricao" name="descricao" required>{{ $produto->descricao }}</textarea>
+
+        <input type="hidden" name="usuario_id" value="{{ $produto->usuario_id }}">
 
         <button type="submit">Atualizar Produto</button>
     </form>

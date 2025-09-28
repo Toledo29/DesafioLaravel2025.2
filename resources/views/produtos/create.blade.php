@@ -33,6 +33,8 @@
         <label for="descricao">Descrição:</label>
         <textarea id="descricao" name="descricao" required></textarea>
 
+        <input type="hidden" name="usuario_id" value="{{ auth('web_usuario')->user()->id }}">
+
         <button type="submit">Criar Produto</button>
     </form>
 </div>

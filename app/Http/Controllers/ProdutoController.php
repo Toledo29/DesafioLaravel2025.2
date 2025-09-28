@@ -25,12 +25,12 @@ class ProdutoController extends Controller
     {
         /** @var \App\Models\Usuario $user */
         $user = auth()->guard('web_usuario')->user();
-
+        
         $data = $request->validated();
         $data['foto'] = $request->file('foto')->store('produtos.fotos' , 'public');
 
         $user->produtos()->create($data);
-        return redirect()->route('produtos');
+        return redirect()->route('produtos.produtosAdm')->with('success', 'Produto criado com sucesso!');
     }
 
     /**
@@ -61,7 +61,7 @@ class ProdutoController extends Controller
             $data['foto'] = $request->file('foto')->store('produtos.fotos' , 'public');
         }
 
-        $produto->fill($data);
+        $produto->fill($data)->save();
         return redirect()->route('produtos.show', $produto);
         
     }

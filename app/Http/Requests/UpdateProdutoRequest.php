@@ -22,13 +22,13 @@ class UpdateProdutoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'foto' => 'sometimes|string|max:255',
+            'foto' => 'sometimes|file|image|max:2048',
             'nome' => 'sometimes|string|max:255',
             'preco' => 'sometimes|numeric|min:0',
             'descricao' => 'sometimes|string',
             'quantidade' => 'sometimes|integer|min:0',
             'categoria' => 'sometimes|string|max:255',
-            'usuario_id' => 'required|exists:users,id',
+            'usuario_id' => 'sometimes|exists:usuarios,id',
         ];
     }
 }
