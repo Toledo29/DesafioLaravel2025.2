@@ -14,10 +14,10 @@ class DashboardController extends Controller
         if (auth()->guard('web_usuario')->check()) {
             $user = auth()->guard('web_usuario')->user();
             if($request->input('categoria') == ''){
-                $produtos = Produto::where('usuario_id', '!=', $user->id)->where('nome', 'like', '%'.$request->input('pesquisa').'%')->get();
+                $produtos = Produto::where('usuario_id', '!=', $user->id)->where('nome', 'like', '%'.$request->input('pesquisa').'%')->paginate(10);
             }
             else{
-                $produtos = Produto::where('usuario_id', '!=', $user->id)->where('nome', 'like', '%'.$request->input('pesquisa').'%')->where('categoria', $request->input('categoria'))->get();
+                $produtos = Produto::where('usuario_id', '!=', $user->id)->where('nome', 'like', '%'.$request->input('pesquisa').'%')->where('categoria', $request->input('categoria'))->paginate(10);
             }
 
             return view('dashboard1', compact('produtos'));
@@ -25,10 +25,20 @@ class DashboardController extends Controller
         elseif (auth()->guard('web_admin')->check()) {
             $admin = auth()->guard('web_admin')->user();
             if($request->input('categoria') == ''){
-                $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->get();
+                $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->paginate(10);
             }
             else{
-                $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->where('categoria', $request->input('categoria'))->get();
+                $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->where('categoria', $request->input('categoria'))->paginate(10);
+            }
+            return view('dashboard1', compact('produtos'));
+        }
+        elseif (auth()->guard('web_admin')->check()) {
+            $admin = auth()->guard('web_admin')->user();
+            if($request->input('categoria') == ''){
+                $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->paginate(10);
+            }
+            else{
+                $produtos = Produto::where('nome', 'like', '%'.$request->input('pesquisa').'%')->where('categoria', $request->input('categoria'))->paginate(10);
             }
             return view('dashboard1', compact('produtos'));
         }

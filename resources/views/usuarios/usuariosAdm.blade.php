@@ -1,41 +1,45 @@
-<div>
-    <h1>Usuários</h1>
+@extends('layouts.basic')
+@section('content')
+<div class="max-w-5xl mx-auto py-8">
 
-    <br>
-    <div>
-        <a href="{{ route('dashboard1') }}">Voltar</a>
-        <a href="{{ route('logout') }}">Logout</a>
+    <h1 class="text-3xl font-bold text-center mb-6">Usuários</h1>
+    <div class="space-x-4 text-center mb-6">
+        <a href="{{ route('dashboard1') }}" class="bg-gray-600 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition inline-block">Voltar</a>
+        <a href="{{ route('logout') }}" class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700 transition inline-block">Logout</a>
+        <a href="{{ route('usuarios.create') }}" class="bg-green-600 text-white px-4 py-2 rounded shadow hover:bg-green-700 transition inline-block">Criar</a>
     </div>
-    <br>
-
-    <a href="{{ route('usuarios.create') }}">Criar</a>
-
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($usuarios as $usuario)
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
                 <tr>
-                    <td>{{ $usuario->id }}</td>
-                    <td>{{ $usuario->nome }}</td>
-                    <td>{{ $usuario->email }}</td>
-                    <td>
-                        <a href="{{ route('usuarios.show', $usuario) }}">Visualizar</a>
-                        <a href="{{ route('usuarios.edit', $usuario) }}">Editar</a>
-                        <form action="{{ route('usuarios.destroy', $usuario) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
-                        </form>
-                    </td>
+                    <th class="px-6 py-3 text-left font-medium uppercase">ID</th>
+                    <th class="px-6 py-3 text-left font-medium uppercase">Nome</th>
+                    <th class="px-6 py-3 text-left font-medium uppercase">Email</th>
+                    <th class="px-6 py-3 text-left font-medium uppercase">Ações</th>
                 </tr>
-            @endforeach 
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($usuarios as $usuario)
+                    <tr class="divide-y divide-gray-200">
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $usuario->id }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $usuario->nome }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $usuario->email }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap flex flex-wrap gap-2">
+                            <a href="{{ route('usuarios.show', $usuario) }}" class="bg-gray-600 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition min-w-[100px] flex items-center justify-center text-center">Visualizar</a>
+                            <a href="{{ route('usuarios.edit', $usuario) }}" class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition min-w-[100px] flex items-center justify-center text-center">Editar</a>
+                            <form action="{{ route('usuarios.destroy', $usuario) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')" class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700 transition min-w-[100px] flex items-center justify-center text-center">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach 
+            </tbody>
+        </table>
+        <div class="mt-4">
+            {{ $usuarios->links() }}
+        </div>
+    </div>
 </div>
+@endsection

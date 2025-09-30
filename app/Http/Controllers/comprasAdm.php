@@ -11,7 +11,7 @@ class comprasAdm extends Controller
     public function __invoke(){
 
         $user = auth()->guard('web_usuario')->user();
-        $compras = Venda::where('comprador_id', $user->id)->get();
+        $compras = Venda::where('comprador_id', $user->id)->paginate(10);
 
         return view('compras.comprasAdm' , compact('compras'));
 

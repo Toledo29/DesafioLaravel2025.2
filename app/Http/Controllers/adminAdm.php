@@ -9,7 +9,7 @@ class adminAdm extends Controller
 {
     public function __invoke(){
         $adminLogado = auth('web_admin')->user();
-        $admins = Admin::where('id', $adminLogado->id)->orWhere('criador_id', $adminLogado->id)->get();
+        $admins = Admin::where('id', $adminLogado->id)->orWhere('criador_id', $adminLogado->id)->paginate(10);
         return view('admins.adminAdm' , compact('admins'));
     }
 }

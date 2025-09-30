@@ -19,7 +19,7 @@ class AuthenticatedSessionController extends Controller
         if(Auth::guard('web_usuario')->check() || Auth::guard('web_admin')->check()){
             return redirect()->intended('dashboard1');
         }
-        return view('auth.login');
+        return view('login1');
     }
 
     /**
@@ -49,6 +49,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login1');
     }
 }

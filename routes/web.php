@@ -14,14 +14,15 @@ use App\Http\Controllers\CepController;
 use App\Http\Controllers\usuariosAdm;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PagSeguroController;
+use App\Http\Controllers\comprasAdm;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login1');
 });
 
 Route::middleware('guest:web_usuario,web_admin')->group(function(){
-    Route::get('/login1', [LoginController::class, 'index']);
+    Route::get('/login1', [LoginController::class, 'index'])->name('login1');
     Route::post('/login1', [LoginController::class, 'login'])->name('login1');
 });
 

@@ -10,7 +10,7 @@ class UsuariosAdm extends Controller
 {
     public function __invoke(){
         if(auth()->guard('web_admin')->check()){
-            $usuarios = Usuario::all();
+            $usuarios = Usuario::paginate(10);
         }
         return view('usuarios.usuariosAdm' , compact('usuarios'));
     }

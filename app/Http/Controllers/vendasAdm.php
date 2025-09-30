@@ -11,12 +11,12 @@ class vendasAdm extends Controller
 {
     public function __invoke(){
         if(auth()->guard('web_admin')->check()){
-            $vendas = Venda::all();
+            $vendas = Venda::paginate(10);
             return view('vendas.vendasAdm' , compact('vendas'));
         }
         elseif(auth()->guard('web_usuario')->check()){
             $user = auth()->guard('web_usuario')->user();
-            $vendas = Venda::where('vendedor_id', $user->id)->get();
+            $vendas = Venda::where('vendedor_id', $user->id)->paginate(10);
             $chart_options = [
             'chart_title'   => 'Vendas Realizadas por Mês',
             'model'         => Venda::class,

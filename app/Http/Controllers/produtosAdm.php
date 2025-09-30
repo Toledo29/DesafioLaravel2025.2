@@ -11,11 +11,11 @@ class produtosAdm extends Controller
 {
     public function __invoke(){
         if(auth()->guard('web_admin')->check()){
-            $produtos = Produto::all();
+            $produtos = Produto::paginate(10);
         }
         elseif(auth()->guard('web_usuario')->check()){
             $user = auth()->guard('web_usuario')->user();
-            $produtos = Produto::where('usuario_id', $user->id)->get();
+            $produtos = Produto::where('usuario_id', $user->id)->paginate(10);
         }
 
         $chart_options = [

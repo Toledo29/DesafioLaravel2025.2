@@ -1,69 +1,90 @@
-<div>
-    <h1>Criar Admin</h1>
+@extends('layouts.basic')
+@section('content')
+<div class="max-w-xl mx-auto py-10">
+    <h1 class="text-2xl font-bold text-center mb-6">Criar Admin</h1>
 
     @if ($message = Session::get('menssagem'))
-        <div>
+        <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded text-center">
             <p>{{ $message }}</p>
         </div>
     @endif
 
-    <br>
-    <div>
-        <a href="{{ route('admins.adminAdm') }}">Voltar</a>
-        <a href="{{ route('logout') }}">Logout</a>
+    <div class="flex justify-center gap-4 mb-6">
+        <a href="{{ route('admins.adminAdm') }}" class="bg-gray-600 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition">Voltar</a>
+        <a href="{{ route('logout') }}" class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700 transition">Logout</a>
     </div>
-    <br>
 
-    <form action="{{ route('admins.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admins.store') }}" method="POST" enctype="multipart/form-data" class="bg-white rounded shadow p-6 space-y-4">
         @csrf
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required>
-
-        <label for="password_confirmation">Confirme a Senha:</label>
-        <input type="password" id="password_confirmation" name="password_confirmation" required>
-
-        <label for="data_nascimento">Data de Nascimento:</label>
-        <input type="date" id="data_nascimento" name="data_nascimento"  required>
-
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf" required>
-
-        <label for="foto">Foto:</label>
-        <input type="file" id="foto" name="foto" accept="image/*">
-
-        <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone" name="telefone" required>
-
-        <label for="cep">Cep:</label>
-        <input type="text" id="cep" name="cep" required>
-        <button type="button" onclick="buscarEndereco()">Buscar</button>
-
-        <label for="logradouro">Logradouro:</label>
-        <input type="text" id="logradouro" name="logradouro" required>
-
-        <label for="numero">Número:</label>
-        <input type="text" id="numero" name="numero" required>
-
-        <label for="bairro">Bairro:</label>
-        <input type="text" id="bairro" name="bairro" required>
-
-        <label for="cidade">Cidade:</label>
-        <input type="text" id="cidade" name="cidade" required>
-
-        <label for="estado">Estado:</label>
-        <input type="text" id="estado" name="estado" required>
-
-        <label for="complemento">Complemento:</label>
-        <input type="text" id="complemento" name="complemento">
+        <div>
+            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome:</label>
+            <input type="text" id="nome" name="nome" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
+            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Senha:</label>
+            <input type="password" id="password" name="password" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">Confirme a Senha:</label>
+            <input type="password" id="password_confirmation" name="password_confirmation" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="data_nascimento" class="block text-sm font-medium text-gray-700 mb-1">Data de Nascimento:</label>
+            <input type="date" id="data_nascimento" name="data_nascimento" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="cpf" class="block text-sm font-medium text-gray-700 mb-1">CPF:</label>
+            <input type="text" id="cpf" name="cpf" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="foto" class="block text-sm font-medium text-gray-700 mb-1">Foto:</label>
+            <input type="file" id="foto" name="foto" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="telefone" class="block text-sm font-medium text-gray-700 mb-1">Telefone:</label>
+            <input type="text" id="telefone" name="telefone" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div class="flex gap-2">
+            <div class="flex-1">
+                <label for="cep" class="block text-sm font-medium text-gray-700 mb-1">Cep:</label>
+                <input type="text" id="cep" name="cep" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+            </div>
+            <div class="flex items-end">
+                <button type="button" onclick="buscarEndereco()" class="bg-indigo-600 text-white px-4 py-2 rounded shadow hover:bg-indigo-700 transition">Buscar</button>
+            </div>
+        </div>
+        <div>
+            <label for="logradouro" class="block text-sm font-medium text-gray-700 mb-1">Logradouro:</label>
+            <input type="text" id="logradouro" name="logradouro" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="numero" class="block text-sm font-medium text-gray-700 mb-1">Número:</label>
+            <input type="text" id="numero" name="numero" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="bairro" class="block text-sm font-medium text-gray-700 mb-1">Bairro:</label>
+            <input type="text" id="bairro" name="bairro" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="cidade" class="block text-sm font-medium text-gray-700 mb-1">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="estado" class="block text-sm font-medium text-gray-700 mb-1">Estado:</label>
+            <input type="text" id="estado" name="estado" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
+        <div>
+            <label for="complemento" class="block text-sm font-medium text-gray-700 mb-1">Complemento:</label>
+            <input type="text" id="complemento" name="complemento" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-indigo-500">
+        </div>
         <input type="hidden" name="criador_id" value="{{ auth('web_admin')->user()->id }}">
-    
-        <button type="submit">Criar Admin</button>
+        <div class="text-center pt-2">
+            <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded shadow hover:bg-green-700 transition">Criar Admin</button>
+        </div>
     </form>
 </div>
 
@@ -88,3 +109,4 @@
         });
     }
 </script>
+@endsection
