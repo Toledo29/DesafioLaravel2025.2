@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -18,9 +18,21 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'nome',
         'email',
         'password',
+        'telefone',
+        'data_nascimento',
+        'cpf',
+        'saldo',
+        'foto',
+        'cep',
+        'numero',
+        'logradouro',
+        'bairro',
+        'cidade',
+        'estado',
+        'complemento',
     ];
 
     /**
@@ -43,6 +55,14 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'saldo' => 'float',
+            'data_nascimento' => 'date',
+            'numero' => 'integer',
         ];
+    }
+
+    public function produtos()
+    {
+        return $this->hasMany(Produto::class);
     }
 }

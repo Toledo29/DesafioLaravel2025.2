@@ -1,4 +1,4 @@
-git@extends('layouts.basic')
+@extends('layouts.basic')
 @section('content')
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="rounded shadow p-8 max-w-md mx-auto bg-white mt-10">
